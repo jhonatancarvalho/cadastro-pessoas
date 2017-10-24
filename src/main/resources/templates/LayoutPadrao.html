@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+	<title>QuickStart Crud Pessoas</title>
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-inverse navbar-static-top">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="#">
+		                <img th:src="@{/images/logo.png}" />
+		            </a>
+		        </div>
+		    </div>
+		</nav>
+	</header>
+	<section layout:fragment="conteudo">
+		<p>Conteúdo principal</p>
+	</section>
+	<footer>
+    	<p>Desenvolvido por Jhonatan Carvalho</p>
+  	</footer> 
+  	
+  	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+	<script th:src="@{/js/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/gp-quickstart.js}"></script>
+</body>
+</html>

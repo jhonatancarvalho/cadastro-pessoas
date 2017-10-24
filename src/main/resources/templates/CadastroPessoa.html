@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="LayoutPadrao">
+    
+	<head>
+		<title>Cadastro de pessoa</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+		<form class="form-horizontal" method="POST" th:action="@{/pessoas}" th:object="${pessoa}">
+			<div layout:replace="MensagemGeral"></div>
+			<div layout:replace="MensagemErro"></div>
+			
+			<div class="panel panel-default">
+      			<div class="panel-heading">
+      				<div class="clearfix">
+	   					<h1 class="panel-title gp-titulo-panel">Cadastro de pessoa</h1>
+	   					<a class="btn btn-link gp-link-panel" th:href="@{/pessoas}">Voltar para pesquisa</a>
+	   				</div>
+      			</div>
+      			<div class="panel-body">
+      				<input type="hidden" th:field="*{id}" />
+      			
+      				<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+						<label for="nome" class="col-sm-2 control-label">Nome</label>
+						<div class="col-sm-4">
+							<input type="text" autofocus="autofocus" class="form-control" id="nome" th:field="*{nome}"/>
+						</div>
+					</div>
+					<div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-error">
+						<label for="cpf" class="col-sm-2 control-label">CPF</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control cpf" id="cpf" th:field="*{cpf}"/>
+						</div>
+					</div>
+					<div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
+						<label for="email" class="col-sm-2 control-label">E-mail</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="email" th:field="*{email}"/>
+						</div>
+					</div>
+					<div class="form-group" th:classappend="${#fields.hasErrors('dataNascimento')} ? has-error">
+						<label for="dataNascimento" class="col-sm-2 control-label">Data Nasc.</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
+							data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+							data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</div>
+      			</div>
+   	 		</div>
+		</form>
+	</section>
+</html>

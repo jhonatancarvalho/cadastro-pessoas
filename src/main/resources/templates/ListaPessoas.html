@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+	
+	<head>
+		<title>Pesquisa de pessoas</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+		<div layout:replace="MensagemGeral"></div>
+		
+		<div class="panel panel-default">
+   			<div class="panel-heading">
+   				<div class="clearfix">
+	   				<h1 class="panel-title gp-titulo-panel">Pesquisa de pessoas</h1>
+	   				<a class="btn btn-link gp-link-panel" th:href="@{/pessoas/novo}">Nova pessoa</a>
+	   			</div>
+   			</div>
+   			<div class="panel-body">
+   				<form method="GET" class="form-horizontal" th:action="@{/pessoas}" th:object="${filtro}">
+		   			<div class="form-group">
+		   				<div class="col-sm-4">
+		   					<div class="input-group">
+		   						<input class="form-control" placeholder="Qual pessoa você está procurando?"
+		   							autofocus="autofocus" th:field="*{nome}"></input>
+		   						<span class="input-group-btn">
+		   							<button type="submit" class="btn btn-default">
+		   								<i class="glyphicon glyphicon-search"></i>
+		   							</button>
+		   						</span>
+		   					</div>
+		   				</div>
+		   			</div>
+		   		</form>
+		   		<div class="table-responsive">
+	   				<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th class="col-md-2">CPF</th>
+								<th class="col-md-2">E-mail</th>
+								<th class="col-md-2">Data Nasc.</th>
+								<th class="col-md-1"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="pessoa : ${pessoas}">
+								<td th:text="${pessoa.nome}"></td>
+								<td th:text="${pessoa.cpf}"></td>
+								<td th:text="${pessoa.email}"></td>
+								<td th:text="${{pessoa.dataNascimento}}"></td>
+								<td class="text-center">
+									<a class="btn btn-link btn-xs" th:href="@{/pessoas/{id}(id=${pessoa.id})}" title="Editar" rel="tooltip" data-placement="top">
+		   								<span class="glyphicon glyphicon-pencil"></span>
+		   							</a>
+		   							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+		   								th:attr="data-id=${pessoa.id}, data-nome=${pessoa.nome}" title="Excluir" rel="tooltip" data-placement="top">
+		   								<span class="glyphicon glyphicon-remove"></span>
+		   							</a>
+								</td>
+							</tr>
+							<tr th:if="${#lists.isEmpty(pessoas)}">
+								<td colspan="6">Nenhuma pessoa foi encontrada</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		   	</div>
+		   	
+		   	<div layout:replace="DialogoConfirmacaoExclusao"></div>
+		   	
+	 	</div>
+	</section>
+</html>
